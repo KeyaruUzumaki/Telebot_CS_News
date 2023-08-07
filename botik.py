@@ -85,8 +85,9 @@ def get_text_messages(message):
         options.add_argument('--headless')
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
+        #options.binary_location = "./chromedriver.exe"
         
-        driver = uc.Chrome(service=Service(ChromeDriverManager().install()), use_subprocess=True, options=options)
+        driver = uc.Chrome(executable_path=r".\chromedriver.exe", options=options)
         driver.get(url+'/matches')
         
         soup = BeautifulSoup(driver.page_source, 'lxml')
