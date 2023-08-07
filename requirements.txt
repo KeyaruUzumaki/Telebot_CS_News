@@ -5,3 +5,4 @@ python-dotenv
 Requests
 selenium
 undetected_chromedriver
+lxml
