@@ -19,10 +19,7 @@ from PIL import Image
 import os
 from dotenv import dotenv_values
 
-if os.environ.get("TELEBOT_TOKEN"):
-    TElEBOT_TOKEN=os.environ.get("TELEBOT_TOKEN")
-else:
-    TElEBOT_TOKEN=dotenv_values(".env").get("TELEBOT_TOKEN")
+TElEBOT_TOKEN=os.environ.get("TELEBOT_TOKEN", dotenv_values(".env").get("TELEBOT_TOKEN"))
 bot = telebot.TeleBot(TElEBOT_TOKEN)
 now = datetime.datetime.now()
 
@@ -85,9 +82,10 @@ def get_text_messages(message):
         options.add_argument('--headless')
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
+        #chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
         #options.binary_location = "./chromedriver.exe"
         
-        driver = uc.Chrome(executable_path=r".\chromedriver.exe", options=options)
+        driver = uc.Chrome(service=Service(ChromeDriverManager().install()), options=options)
         driver.get(url+'/matches')
         
         soup = BeautifulSoup(driver.page_source, 'lxml')
