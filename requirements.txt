@@ -1,9 +1,7 @@
-beautifulsoup4==4.12.2
-Pillow==9.4.0
-Pillow==10.0.0
-pyTelegramBotAPI==4.12.0
-pyTelegramBotAPI==4.12.0
-python-dotenv==1.0.0
-Requests==2.31.0
-selenium==4.11.2
-undetected_chromedriver==3.5.0
+beautifulsoup4
+Pillow
+pyTelegramBotAPI
+python-dotenv
+Requests
+selenium
+undetected_chromedriver
