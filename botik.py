@@ -17,7 +17,11 @@ from PIL import Image
 import os
 from dotenv import dotenv_values
 
-bot = telebot.TeleBot(dotenv_values(".env").get("TELEBOT_TOKEN"))
+try:
+    TElEBOT_TOKEN=os.environ.get("TELEBOT_TOKEN")
+except:
+    TElEBOT_TOKEN=dotenv_values(".env").get("TELEBOT_TOKEN")
+bot = telebot.TeleBot(TElEBOT_TOKEN)
 now = datetime.datetime.now()
 
 headers = {
