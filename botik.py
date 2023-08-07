@@ -10,6 +10,8 @@ from selenium.webdriver import ChromeOptions
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import undetected_chromedriver as uc
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 import datetime
 import time
@@ -17,9 +19,9 @@ from PIL import Image
 import os
 from dotenv import dotenv_values
 
-try:
+if os.environ.get("TELEBOT_TOKEN"):
     TElEBOT_TOKEN=os.environ.get("TELEBOT_TOKEN")
-except:
+else:
     TElEBOT_TOKEN=dotenv_values(".env").get("TELEBOT_TOKEN")
 bot = telebot.TeleBot(TElEBOT_TOKEN)
 now = datetime.datetime.now()
@@ -81,7 +83,10 @@ def get_text_messages(message):
 
         options = uc.ChromeOptions() 
         options.add_argument('--headless')
-        driver = uc.Chrome(use_subprocess=True, options=options)
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        
+        driver = uc.Chrome(service=Service(ChromeDriverManager().install()), use_subprocess=True, options=options)
         driver.get(url+'/matches')
         
         soup = BeautifulSoup(driver.page_source, 'lxml')
