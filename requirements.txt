@@ -6,3 +6,4 @@ Requests
 selenium
 undetected_chromedriver
 lxml
+webdriver_manager
