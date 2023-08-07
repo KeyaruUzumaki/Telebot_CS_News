@@ -23,6 +23,7 @@ TElEBOT_TOKEN=os.environ.get("TELEBOT_TOKEN", dotenv_values(".env").get("TELEBOT
 bot = telebot.TeleBot(TElEBOT_TOKEN)
 now = datetime.datetime.now()
 
+
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
 }
@@ -37,6 +38,7 @@ def start_message(message):
 
 @bot.message_handler(content_types = ['text'])
 def get_text_messages(message):
+    print("Message")
     if message.text == 'Новости':
         url = "https://www.hltv.org"
         r = requests.get(url, headers=headers)
